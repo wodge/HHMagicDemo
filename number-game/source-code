@@ -1,0 +1,65 @@
+import random
+
+guessesTaken = 0
+difficulty = 1
+highNumber = 20
+
+print("Hello! What is your name?")
+myName = input()
+
+while difficulty < 10:
+
+    highNumber = highNumber * difficulty
+    sys_num = random.randrange(1,highNumber)
+
+    print("Well,", myName, ",I am thinking of a number between 1 and ", highNumber, ".")
+
+    while guessesTaken < 6:
+        print('Take a guess.')
+
+        while True:
+            try:
+                guess = int(input())
+                if guess >= 1 and guess <= highNumber:
+                    break
+                else:
+                    print('Please enter a number between 1 and ', highNumber, '.')
+            except ValueError:
+                print('Please enter a NUMBER.')
+
+        guessesTaken = guessesTaken + 1
+
+        if guess < sys_num:
+            print('Too low.')
+        elif guess > sys_num:
+            print('Too high.')
+        elif guess == sys_num:
+            break
+    if guess == sys_num:
+        guessesTaken = str(guessesTaken)
+        print('Way to go!,', myName, ', you got it right in ', guessesTaken, 'guesses!')
+        print('Do you want to try again? A little more difficult maybe?')
+
+        #reset all your values for the next round
+        difficulty = difficulty + 1
+        guessesTaken = 0
+        highNumber = 20
+
+        tryAgain = input("y/n? ")
+        if tryAgain.lower() != "y":
+            print("Thanks for playing!")
+            break
+        
+    if guess != sys_num:
+        sys_num = str(sys_num)
+        print('Nope, the number I was thinking of was', sys_num, '.')
+        print('Do you want to try again?')
+        tryAgain = input("y/n? ")
+        if tryAgain.lower() == "y":
+            #Reset values to start over            
+            difficulty = 1
+            guessesTaken = 0
+            highNumber = 20
+        elif tryAgain.lower() != "y":
+            print("Thanks for playing,", myName,'!')
+            break
