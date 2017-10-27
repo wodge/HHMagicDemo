@@ -18,7 +18,7 @@ guess = input("'Higher', 'Lower', or was it 'Correct'? ")
 guess = guess.lower()
 
 while guess != "correct":
-    if tries == 8:
+    if tries == 8: #can be increased to reduce failure
         print("\n I guess I couldn't guess your age....")
         print("Closing...")
         time.sleep(5)
